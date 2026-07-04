@@ -1,0 +1,17 @@
+{
+  "name": "vue-gen-comp-cli",
+  "version": "1.0.0",
+  "description": "A CLI tool to generate 4-file split Vue components",
+  "main": "index.js",
+  "bin": {
+    "make-vue-comp": "./index.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "type": "module",
+  "keywords": ["vue", "cli", "scaffold", "boilerplate", "component"],
+  "author": "Ravi Patel - 502 9421166",
+  "license": "ISC"
+  
+}
