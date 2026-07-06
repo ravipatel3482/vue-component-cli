@@ -26,7 +26,7 @@ if (fs.existsSync(path.join(baseDir, 'src'))) {
 }
 
 // 5. Construct final folder destination path
-const folderName = componentName.charAt(0).toUpperCase() + componentName.slice(1);
+const folderName = componentName.charAt(0).toUpperCase() + componentName.slice(1) + 'Component';
 const fileBaseName = componentName.charAt(0).toLowerCase() + componentName.slice(1);
 
 const finalFolderDir = targetSubFolder !== '.'
