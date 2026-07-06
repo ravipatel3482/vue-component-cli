@@ -30,9 +30,9 @@ const finalFolderDir = targetSubFolder !== '.'
   ? path.join(baseDir, targetSubFolder, componentName)
   : path.join(baseDir, componentName);
 
+// Only 3 file paths defined now
 const vuePath = path.join(finalFolderDir, `${componentName}.vue`);
 const htmlPath = path.join(finalFolderDir, `${componentName}.html`);
-const jsPath = path.join(finalFolderDir, `${componentName}.js`);
 const cssPath = path.join(finalFolderDir, `${componentName}.css`);
 
 try {
@@ -44,30 +44,27 @@ try {
     process.exit(1);
   }
 
-  // Helper values for dynamic content generation
+  // Helper value for CSS class styling (e.g. MyComponent -> my-component)
   const kebabCaseName = componentName
     .replace(/([a-z0-9])([A-Z])/g, '$1-$2')
-    .toLowerCase(); // e.g. MySplitComponent -> my-split-component
+    .toLowerCase();
 
-  // 7. Define dynamically injected boilerplate templates
-  const vueTemplate = `<template src="./${componentName}.html"></template>\n<script src="./${componentName}.js"></script>\n<style src="./${componentName}.css" scoped></style>\n`;
+  // 7. Define the 3 boilerplate templates
   
-  // Custom dynamically populated HTML layout structure
+  // Custom structured Vue file: template references src, script block houses code, style section follows script
+  const vueTemplate = `<template src="./${componentName}.html"></template>\n\n<script lang="ts">\nimport { defineComponent } from 'vue';\n\nexport default defineComponent({\n  name: '${componentName}',\n  data() {\n    return {\n      componentTitle: '${componentName} Content',\n      isActive: true\n    };\n  },\n  mounted() {\n    console.log('${componentName} initialized successfully.');\n  }\n});\n</script>\n\n<style src="./${componentName}.css" scoped></style>\n`;
+  
   const htmlTemplate = `<div class="${kebabCaseName}-container" id="${componentName}">\n  <h1>${componentName} component is working perfectly!</h1>\n</div>\n`;
-  
-  // Custom dynamically populated JavaScript structure
-  const jsTemplate = `export default {\n  name: '${componentName}',\n  data() {\n    return {\n      componentTitle: '${componentName} Content',\n      isActive: true\n    };\n  },\n  mounted() {\n    console.log('${componentName} initialized successfully.');\n  }\n};\n`;
   
   const cssTemplate = `.${kebabCaseName}-container {\n  padding: 20px;\n}\n`;
 
-  // 8. Write the customized files to disk
+  // 8. Write the 3 files to disk
   fs.writeFileSync(vuePath, vueTemplate);
   fs.writeFileSync(htmlPath, htmlTemplate);
-  fs.writeFileSync(jsPath, jsTemplate);
   fs.writeFileSync(cssPath, cssTemplate);
 
   const relativeDisplayPath = path.relative(process.cwd(), finalFolderDir);
-  console.log('\x1b[32m%s\x1b[0m', `🚀 Success! Created dynamically generated component ${componentName} inside: ${relativeDisplayPath}`);
+  console.log('\x1b[32m%s\x1b[0m', `🚀 Success! Created 3-file component ${componentName} inside: ${relativeDisplayPath}`);
 
 } catch (error) {
   console.error('\x1b[31m%s\x1b[0m', `An error occurred: ${error.message}`);
