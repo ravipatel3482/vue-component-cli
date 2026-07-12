@@ -55,7 +55,7 @@ try {
   // 7. Define the 3 boilerplate templates
 
   // Custom structured Vue file: template references src, script block houses code, style section follows script
-  const vueTemplate = `<template src="./${fileBaseName}.html"></template>\n\n<script lang="ts">\nimport { defineComponent } from 'vue';\n\nexport default defineComponent({\n  name: '${componentName}',\n  data() {\n    return {\n      componentTitle: '${componentName} Content',\n      isActive: true\n    };\n  },\n  mounted() {\n    console.log('${componentName} initialized successfully.');\n  }\n});\n</script>\n\n<style src="./${fileBaseName}.css" scoped></style>\n`;
+  const vueTemplate = `<template src="./${fileBaseName}.html"></template>\n\n<script lang="ts">\nimport { defineComponent } from 'vue';\n\nexport default defineComponent({\n  name: '${componentName}',\n  data() {\n    return {\n      componentTitle: '${componentName} Content',\n      isActive: true\n    };\n  },\n  mounted() {\n    console.log('${componentName} initialized successfully.');\n  }\n});\n</script>\n\n<style scoped src="./${fileBaseName}.css"></style>\n`;
 
   const htmlTemplate = `<div class="${kebabCaseName}-container" id="${componentName}">\n  <h1>${componentName} component is working perfectly!</h1>\n</div>\n`;
 
